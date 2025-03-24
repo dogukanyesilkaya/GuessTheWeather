@@ -1,0 +1,9 @@
+POST http://localhost:8080/country
+Content-Type: application/json
+
+{
+  "name": "United Kingdom",
+  "continent": "Europe",
+  "temperature": "12 Celsius"
+}
+###

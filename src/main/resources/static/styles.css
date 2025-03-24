@@ -1,0 +1,38 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    text-align: center;
+}
+
+.map-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#world-map {
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: 20px;
+}
+
+.country {
+    fill: lightblue;
+    stroke: black;
+    stroke-width: 2;
+    cursor: pointer;
+    transition: fill 0.3s;
+}
+
+.country:hover {
+    fill: lightcoral;
+}
+
+#country-name {
+    font-size: 1.5rem;
+    color: #333;
+}
