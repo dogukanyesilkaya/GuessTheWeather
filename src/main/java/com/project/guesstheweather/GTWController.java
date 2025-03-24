@@ -5,16 +5,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Random;
 
 
 @RestController
 @RequestMapping("")
 public class GTWController {
     private final GTWService gtwService;
+    private final CountryRepository countryRepository;
 
     @Autowired
-    public GTWController(GTWService gtwService) {
+    public GTWController(GTWService gtwService, CountryRepository countryRepository) {
         this.gtwService = gtwService;
+        this.countryRepository = countryRepository;
     }
 
     @PostMapping("countrylog")
@@ -38,14 +41,19 @@ public class GTWController {
 //        gtwService.countryRepository.save(country);
 //    }
 
-    @GetMapping("country")
-    private List<Country> GetAllCountries() {
-        return gtwService.countryRepository.findAll();
+//    @GetMapping("/country")
+//    private List<Country> GetAllCountries() {
+//        return gtwService.countryRepository.findAll();
+//    }
+
+    @GetMapping("/country")
+    private String GetCountryTemperatureByCountryCode(@RequestParam String code) {
+        return gtwService.countryRepository.getCountryWithCode(code).getTemperature();
     }
 
-    @GetMapping("country/{code}")
-    private Country GetCountryByCountryCode(@PathVariable String code) {
-        return gtwService.countryRepository.getCountryWithCode(code);
+    @GetMapping("/country-randomtemp")
+    private String GetRandomTemperature() {
+        return gtwService.GetRandomTemperature();
     }
 
     @GetMapping("countrylog")
@@ -56,5 +64,9 @@ public class GTWController {
     @GetMapping("countrylog/{id}")
     private CountryLog GetCountryLogByID(@PathVariable int id) {
         return gtwService.countryLogRepository.findById(id).get();
+    }
+
+    public int HowCloseWasGuess(int guess,int exactTemperature){
+        return exactTemperature-guess;
     }
 }

@@ -9,4 +9,7 @@ import java.util.List;
 public interface CountryRepository extends JpaRepository<Country, Integer> {
     @Query(value = "SELECT * FROM country WHERE code = :code", nativeQuery = true)
     Country getCountryWithCode(@Param("code") String code);
+
+    @Query(value = "SELECT * FROM country ORDER BY RAND( ) LIMIT 1", nativeQuery = true)
+    Country getRandomCountry();
 }
