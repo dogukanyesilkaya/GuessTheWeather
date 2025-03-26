@@ -3,26 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Interactive World Map</title>
+  <title>World Map Search</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="map-container">
-  <h1>Interactive World Map</h1>
-  <div id="world-map">
-    <!-- Example of SVG with countries -->
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500">
-      <g id="countries">
-        <path id="US" class="country" d="M100,100 L200,100 L200,200 L100,200 Z" data-name="United States"></path>
-        <path id="CA" class="country" d="M250,100 L350,100 L350,200 L250,200 Z" data-name="Canada"></path>
-        <!-- More countries can go here -->
-      </g>
-    </svg>
-  </div>
-  <div id="country-name">
-    <h2>Click on a country to see its name</h2>
-  </div>
+<h1>World Map Search</h1>
+
+<label for="difficulty">Choose a Difficulty:</label>
+<select name="difficulty" id="difficulty">
+  <option value="easy">Easy</option>
+  <option value="moderate">Moderate</option>
+  <option value="hard">Hard</option>
+  <option value="extreme">Extreme</option>
+</select>
+
+<p id="randomtemp">Not specified</p>
+<p id="guessesleft">Not specified</p>
+<img id="map" src="https://upload.wikimedia.org/wikipedia/commons/8/80/World_map_-_low_resolution.svg" alt="World Map">
+<br>
+<input type="text" id="search" placeholder="Enter country code...">
+<button type="button" id="guessButton">Guess it!</button>
+<div id="result"></div>
+
+
+<div class="overlay" id="overlay" onclick="closePopup()"></div>
+<div class="popup" id="popup">
+  <p>You've lost the game.</p>
+  <button onclick="closePopup()" id="retryButton">Retry</button>
 </div>
+
+<script>
+
+  function closePopup() {
+    document.getElementById("popup").style.display = "none";
+    document.getElementById("overlay").style.display = "none";
+  }
+</script>
+
 <script src="script.js"></script>
+<script src="utils.js"></script>
+
 </body>
 </html>
